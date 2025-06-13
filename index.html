@@ -11,24 +11,14 @@
       padding: 0;
       font-family: Arial, sans-serif;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       color: white;
       text-align: center;
+      position: relative;
     }
 
     h1 {
-      margin-bottom: 20px;
-    }
-
-    .message {
-      font-size: 2em;
-      margin-top: 20px;
-      opacity: 0;
-      transition: opacity 1s ease;
+      margin-top: 50px;
+      font-size: 2.5em;
     }
 
     button {
@@ -42,10 +32,18 @@
       font-weight: bold;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.2s ease;
+      margin-top: 20px;
     }
 
     button:hover {
       transform: scale(1.05);
+    }
+
+    .message {
+      font-size: 2em;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
 
     .heart {
@@ -87,6 +85,21 @@
         transform: translateY(-200px) rotate(45deg);
       }
     }
+
+    .extra-message {
+      position: absolute;
+      font-size: 1.2em;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
   </style>
 </head>
 <body>
@@ -95,6 +108,15 @@
   <div class="message" id="message">você é linda ❤️</div>
 
   <script>
+    const elogios = [
+      "seu sorriso é lindo bb 😍",
+      "você é maravilhosa 💖",
+      "que princesa 👑",
+      "a mais linda 🌸",
+      "um raio de sol ☀️",
+      "tão perfeita 💫",
+    ];
+
     function showLove() {
       const message = document.getElementById('message');
       message.style.opacity = 1;
@@ -107,6 +129,15 @@
         document.body.appendChild(heart);
 
         setTimeout(() => heart.remove(), 4000);
+      }
+
+      for (let i = 0; i < elogios.length; i++) {
+        const elogio = document.createElement('div');
+        elogio.className = 'extra-message';
+        elogio.textContent = elogios[i];
+        elogio.style.left = Math.random() * 90 + 'vw';
+        elogio.style.top = Math.random() * 80 + 'vh';
+        document.body.appendChild(elogio);
       }
     }
   </script>
